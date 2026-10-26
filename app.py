@@ -41,6 +41,14 @@ def update_student(id):
     return jsonify(students[id])
 
 
+@app.route("/students/<int:id>", methods=["PATCH"])
+def patch_student(id):
+    if id not in students:
+        return jsonify({"error": "Student not found"}), 404
+    students[id].update(request.json)
+    return jsonify(students[id])
+
+
 @app.route("/students/<int:id>", methods=["DELETE"])
 def delete_student(id):
     if id not in students:
