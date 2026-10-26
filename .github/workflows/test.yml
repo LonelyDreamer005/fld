@@ -1,25 +1,14 @@
+name: Test
 
-name: Flask API Tests
-
-on:
-  push:
-  pull_request:
+on: [push, pull_request]
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-
-      - name: Install dependencies
-        run: pip install -r req.txt
-
-      - name: Run tests
-        run: python -m pytest -v
+      - run: pip install -r req.txt
+      - run: pytest

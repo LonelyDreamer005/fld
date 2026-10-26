@@ -1,14 +1,18 @@
-
 from app import app
+
+client = app.test_client()
 
 
 def test_home():
-    client = app.test_client()
-    response = client.get("/")
-    assert response.status_code == 200
+    res = client.get("/")
+    assert res.status_code == 200
 
 
 def test_get_students():
-    client = app.test_client()
-    response = client.get("/students")
-    assert response.status_code == 200
+    res = client.get("/students")
+    assert res.status_code == 200
+
+
+def test_add_student():
+    res = client.post("/students", json={"name": "Alice", "course": "CS"})
+    assert res.status_code == 201

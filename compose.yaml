@@ -1,7 +1,5 @@
-
 services:
-  stud-api:
+  app:
     build: .
-    container_name: stud-api-compose
     ports:
       - "5000:5000"
